@@ -58,8 +58,12 @@ class Rossman:
         with open(os.path.join(base_dir, 'parameter', 'assortment_mapping.pkl'), 'rb') as f:
             self.assortment_mapping = pickle.load(f)
 
-        with open(os.path.join(base_dir, '..', 'model', 'model_rossman_sales.pkl'), 'rb') as f:
+
+        model_path = os.path.join(base_dir, '..', 'model', 'model_rossman_sales.pkl')
+        with open(model_path, 'rb') as f:
             self.model = pickle.load(f)
+
+
     def clean_data(self, df):
         df = df.copy()
         def snake_case(lst):
