@@ -1,0 +1,2 @@
+database/train.csv filter=lfs diff=lfs merge=lfs -text
+api/rossman/model/model_rossman_sales.pkl filter=lfs diff=lfs merge=lfs -text
