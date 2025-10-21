@@ -2,6 +2,8 @@ import pickle
 import pandas as pd
 import numpy as np
 import datetime
+import os
+
 
 class Rossman:
     """
@@ -33,24 +35,31 @@ class Rossman:
     ]
 
     def __init__(self):
-        with open('parameter/robust_scaler_competition_distance.pkl', 'rb') as f:
+        base_dir = os.path.dirname(os.path.abspath(__file__))  # pasta api/rossman
+
+        with open(os.path.join(base_dir, 'parameter', 'robust_scaler_competition_distance.pkl'), 'rb') as f:
             self.scaler_competition_distance = pickle.load(f)
-        with open('parameter/robust_scaler_competition_time_month.pkl', 'rb') as f:
+
+        with open(os.path.join(base_dir, 'parameter', 'robust_scaler_competition_time_month.pkl'), 'rb') as f:
             self.scaler_competition_time_month = pickle.load(f)
-        with open('parameter/minmax_scaler_promo_time_week.pkl', 'rb') as f:
+
+        with open(os.path.join(base_dir, 'parameter', 'minmax_scaler_promo_time_week.pkl'), 'rb') as f:
             self.scaler_promo_time_week = pickle.load(f)
-        with open('parameter/minmax_scaler_year.pkl', 'rb') as f:
+
+        with open(os.path.join(base_dir, 'parameter', 'minmax_scaler_year.pkl'), 'rb') as f:
             self.scaler_year = pickle.load(f)
-        with open('parameter/ohe_state_holiday.pkl', 'rb') as f:
+
+        with open(os.path.join(base_dir, 'parameter', 'ohe_state_holiday.pkl'), 'rb') as f:
             self.ohe_state_holiday = pickle.load(f)
-        with open('parameter/le_store_type.pkl', 'rb') as f:
+
+        with open(os.path.join(base_dir, 'parameter', 'le_store_type.pkl'), 'rb') as f:
             self.le_store_type = pickle.load(f)
-        with open('parameter/assortment_mapping.pkl', 'rb') as f:
+
+        with open(os.path.join(base_dir, 'parameter', 'assortment_mapping.pkl'), 'rb') as f:
             self.assortment_mapping = pickle.load(f)
-        # Carrega o modelo treinado
-        with open('model/model_rossman_sales.pkl', 'rb') as f:
+
+        with open(os.path.join(base_dir, '..', 'model', 'model_rossman_sales.pkl'), 'rb') as f:
             self.model = pickle.load(f)
-        
     def clean_data(self, df):
         df = df.copy()
         def snake_case(lst):
