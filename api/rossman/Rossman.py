@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import datetime
 import os
-import requests
 
 
 class Rossman:
@@ -58,29 +57,12 @@ class Rossman:
 
         with open(os.path.join(base_dir, 'parameter', 'assortment_mapping.pkl'), 'rb') as f:
             self.assortment_mapping = pickle.load(f)
-        model_path = os.path.join(base_dir, '..', 'model', 'model_rossman_sales.pkl')
+        model_path = os.path.join(base_dir, 'model', 'model_rossman_sales.pkl')
         model_path = os.path.abspath(model_path)
-
-        if not os.path.exists(model_path):
-            print("Modelo não encontrado localmente. Baixando do repositório remoto...")
-
-            url = "https://huggingface.co/ektra1/rossman_sales/resolve/main/model/model_rossman_sales.pkl"
-
-            os.makedirs(os.path.dirname(model_path), exist_ok=True)
-
-            try:
-                with requests.get(url, stream=True, timeout=60) as r:
-                    r.raise_for_status()
-                    with open(model_path, "wb") as f:
-                        for chunk in r.iter_content(chunk_size=8192):
-                            if chunk:
-                                f.write(chunk)
-                print("Modelo baixado com sucesso.")
-            except Exception as e:
-                raise RuntimeError(f"Falha ao baixar o modelo do Hugging Face: {e}")
-        
         with open(model_path, 'rb') as f:
             self.model = pickle.load(f)
+
+
 
     def clean_data(self, df):
         df = df.copy()
