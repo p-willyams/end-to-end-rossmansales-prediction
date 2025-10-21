@@ -78,8 +78,9 @@ class Rossman:
                 print("Modelo baixado com sucesso.")
             except Exception as e:
                 raise RuntimeError(f"Falha ao baixar o modelo do Hugging Face: {e}")
-
-
+        
+        with open(model_path, 'rb') as f:
+            self.model = pickle.load(f)
 
     def clean_data(self, df):
         df = df.copy()
