@@ -3,7 +3,11 @@ from flask import Flask, request, Response
 from rossman.Rossman import Rossman
 import os
 
+
+
 app = Flask(__name__)
+
+pipeline = Rossman()
 
 @app.route('/rossman/predict', methods=['POST'])
 def rossman_predict():
@@ -16,7 +20,6 @@ def rossman_predict():
         else:
             df = pd.DataFrame(test_json, columns=test_json[0].keys())
 
-        pipeline = Rossman()
 
         df_predict = pipeline.predict(df)
 
