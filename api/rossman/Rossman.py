@@ -57,8 +57,10 @@ class Rossman:
 
         with open(os.path.join(base_dir, 'parameter', 'assortment_mapping.pkl'), 'rb') as f:
             self.assortment_mapping = pickle.load(f)
+        
         model_path = os.path.join(base_dir, 'model', 'model_rossman_sales.pkl')
         model_path = os.path.abspath(model_path)
+        
         with open(model_path, 'rb') as f:
             self.model = pickle.load(f)
 
