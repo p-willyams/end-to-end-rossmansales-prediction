@@ -14,12 +14,13 @@ class Rossman:
     scalers e encoders salvos durante o treinamento para garantir consistência no deploy.
     """
 
-    # Lista das features esperadas pelo modelo treinado
     expected_features = [
         'store',
         'promo',
         'competition_distance',
         'promo2',
+        'promo2_since_week',
+        'competition_open_since_month',
         'competition_time_month',
         'promo_time_week',
         'month_cos',
@@ -144,9 +145,6 @@ class Rossman:
             'open',
             'promo_interval',
             'promo2_since_year',
-            'promo2_since_week',
-            'competition_open_since_month',
-            'competition_open_since_year',
             'competition_since',
             'promo_since'
         ]
